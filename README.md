@@ -12,5 +12,7 @@ Ok. Firs of all you need to run 3 VMs.
   2nd extarnal database for Zabbix server
   3rd VM for Zabbix proxy
   
-  ` timedatectl set-timezone Europe/Moscow `
+  ```bash
+  timedatectl set-timezone Europe/Moscow
+  `
  
