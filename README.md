@@ -90,3 +90,43 @@ if you see somting like this
 NOTICE: You are seeing this message because you have apache2 package installed  
 ..
 ```
+run 
+```bash
+sudo apt remove apache2
+```
+check nginx:
+```bash
+systemctl status nginx
+```
+```bash
+systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: en
+   Active: inactive (dead)
+     Docs: man:nginx(8)
+ ```
+ start and enable nginx
+ ```bash 
+ systemctl start nginx 
+ ```
+ ```bash
+ systemctl enable nginx
+ ```
+ 
+check nginx
+```bash
+systemctl status nginx
+```
+```bash
+ nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: en
+   Active: ----------------------------------
+     Docs: man:nginx(8)
+ Main PID: 13931 (nginx)
+    Tasks: 3 (limit: 4656)
+   CGroup: /system.slice/nginx.service
+           ├─13931 nginx: master process /usr/sbin/nginx -g daemon on; master_pr
+           ├─13932 nginx: worker process
+           └─13933 nginx: worker process
+```
+ 
