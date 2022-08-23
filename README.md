@@ -120,7 +120,7 @@ systemctl status nginx
 ```shell
  nginx.service - A high performance web server and a reverse proxy server
    Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: en
-   Active: ----------------------------------
+   Active:active (running)
      Docs: man:nginx(8)
  Main PID: 13931 (nginx)
     Tasks: 3 (limit: 4656)
