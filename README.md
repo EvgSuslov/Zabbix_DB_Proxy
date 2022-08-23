@@ -8,9 +8,16 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
   Zabbix server & Zabbix Agent run
 
 Ok. Firs of all you need to run 3 VMs. 
-  1st main Zabbix with Zabbix server and Zabbix Agent
+  1st main Zabbix with Zabbix server and Zabbix Agent  
+    We will be use Ubuntu server 18.04 
+    Run aftell installation process finished:  
+    
+    ```bash
+    apt update && apt upgrade 
+    ``` 
   2nd extarnal database for Zabbix server
   3rd VM for Zabbix proxy
+  
   
   ```bash 
   timedatectl set-timezone your_time_zone 
