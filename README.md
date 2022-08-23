@@ -117,7 +117,7 @@ check nginx
 ```bash
 systemctl status nginx
 ```
-```bash
+```cli
  nginx.service - A high performance web server and a reverse proxy server
    Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: en
    Active: ----------------------------------
