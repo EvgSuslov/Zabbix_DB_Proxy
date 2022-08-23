@@ -1,7 +1,7 @@
 # Zabbix_DB_Proxy
 instalation process for Zabbix Server+ Zabbix Proxy + exteranal database for Zabbix 
 
-#Instalation process
+# Instalation process
 
   Zabbix instalation 
   Database instalation
