@@ -1,7 +1,7 @@
 # Zabbix_DB_Proxy
 instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Zabbix  
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)![Zabbix](https://img.shields.io/badge/-zabbix-red)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-Ubuntu%2018.04%20LTS-orange)![Zabbix](https://img.shields.io/badge/Zabbix-zabbix%6.x%-red)
 # Instalation process
 
   Zabbix instalation 
