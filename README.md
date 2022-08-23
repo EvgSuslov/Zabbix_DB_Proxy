@@ -15,9 +15,11 @@ Ok. Firs of all you need to run 3 VMs.
 apt update && apt upgrade -y
 ``` 
   2nd extarnal database for Zabbix server
-  3rd VM for Zabbix proxy
+  3rd VM for Zabbix proxy  
   
-  
+ For my Linux VMs I usualy use tmux, mc and htop console applications, check them out if you interested.  
+ 
+ # Instalation
   ```bash 
   timedatectl set-timezone your_time_zone 
   ```
@@ -47,7 +49,7 @@ port 443  - for https requests
 port 10050 for GET requests from internal and external zabbix agents  
 [for more additional info about default ports check me](https://docs.oracle.com/en/storage/tape-storage/sl4000/slklg/default-port-numbers.html "oracle default ports")  
 
-Foe settings saving run:  
+For save your settings run:  
 ```bash 
 apt install iptables-persistent
 ```
@@ -57,3 +59,4 @@ netfilter-persistent save
 ```bash
 apt update && apt upgrade -y
 ```
+
