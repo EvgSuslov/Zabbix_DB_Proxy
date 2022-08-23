@@ -130,3 +130,4 @@ systemctl status nginx
            └─13933 nginx: worker process
 ```
  
+if you still visual apache2 default page, just go for index.html in my repo. replace index.html with default nginx file in /var/lib/html/ index.html
