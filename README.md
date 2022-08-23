@@ -12,7 +12,7 @@ Ok. Firs of all you need to run 3 VMs.
     We will be use Ubuntu server 18.04 
     Run after installation process finished:  
 ```bash
-apt update && apt upgrade 
+apt update && apt upgrade -y
 ``` 
   2nd extarnal database for Zabbix server
   3rd VM for Zabbix proxy
@@ -21,7 +21,7 @@ apt update && apt upgrade
   ```bash 
   timedatectl set-timezone your_time_zone 
   ```
-  [for your time zone check me out](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "for your time zone check me out")
+  [for your time zone check me out](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "time zones")
   
 ```bash 
 apt install chrony -y
@@ -45,4 +45,4 @@ where:
 port 80 - http and  web requests  
 port 443  - for https requests  
 port 10050 for GET requests from internal and external zabbix agents  
-[for more additional info about default ports check me](https://docs.oracle.com/en/storage/tape-storage/sl4000/slklg/default-port-numbers.html)  
+[for more additional info about default ports check me](https://docs.oracle.com/en/storage/tape-storage/sl4000/slklg/default-port-numbers.html "oracle default ports")  
