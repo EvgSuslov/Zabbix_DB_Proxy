@@ -7,9 +7,10 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
   Database instalation
   Zabbix server & Zabbix Agent run
 
-Ok. Firs of all yoy need to run 3 VMs. 
+Ok. Firs of all you need to run 3 VMs. 
   1st main Zabbix with Zabbix server and Zabbix Agent
   2nd extarnal database for Zabbix server
   3rd VM for Zabbix proxy
   
+  ` timedatectl set-timezone Europe/Moscow `
  
