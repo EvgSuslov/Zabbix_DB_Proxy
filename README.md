@@ -67,6 +67,15 @@ netfilter-persistent save
 apt update && apt upgrade -y
 ```
 
+To install zabbix server you need[to go here](https://www.zabbix.com/download?zabbix=6.0&os_distribution=ubuntu&os_version=18.04_bionic&db=postgresql&ws=nginx)
 
-
+```bash
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3+ubuntu18.04_all.deb
+```
+```bash
+dpkg -i zabbix-release_6.0-3+ubuntu18.04_all.deb
+```
+```bash
+apt update
+```
 
