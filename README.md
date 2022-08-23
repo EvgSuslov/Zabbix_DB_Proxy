@@ -86,6 +86,7 @@ apt install zabbix-server-pgsql zabbix-frontend-php php7.2-pgsql zabbix-nginx-co
 ```
 #### Apache2 remove
 if you see somting like this
-```bash ... NOTICE: You are seeing this message because you have apache2 package installed
-....
+```bash ..  
+NOTICE: You are seeing this message because you have apache2 package installed  
+..
 ```
