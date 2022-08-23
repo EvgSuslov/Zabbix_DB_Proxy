@@ -15,7 +15,7 @@ Ok. Firs of all you need to run 3 VMs.
   ```bash 
   timedatectl set-timezone "your time zone" 
   ```
-  (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) "for your time zone check me out"):
+  (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "for your time zone check me out"):
  
   
  
