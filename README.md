@@ -3,7 +3,7 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-Ubuntu%2018.04%20LTS-orange)![Zabbix](https://img.shields.io/badge/Zabbix-Zabbix--6.x-red)  
 
-##Practice
+## Practice
 
 1.Get ready 3 VMs running Ububntu Linux  
 2. Get install on 1st VM Zabbix server with nginx + Agent2  
@@ -13,11 +13,6 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
 6. ...  
 
 ## Instalation process
-
-
-  Zabbix instalation 
-  Database instalation
-  Zabbix server & Zabbix Agent run
 
 Ok. First of all you need to run 3 VMs.  
   1st main Zabbix with Zabbix server and Zabbix Agent    
