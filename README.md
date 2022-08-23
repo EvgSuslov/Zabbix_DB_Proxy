@@ -1,7 +1,8 @@
 # Zabbix_DB_Proxy
 instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Zabbix  
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-Ubuntu%2018.04%20LTS-orange)![Zabbix](https://img.shields.io/badge/Zabbix-Zabbix--6.x-red)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-Ubuntu%2018.04%20LTS-orange)![Zabbix](https://img.shields.io/badge/Zabbix-Zabbix--6.x-red)  
+
 ##Practice
 
 1.Get ready 3 VMs running Ububntu Linux  
