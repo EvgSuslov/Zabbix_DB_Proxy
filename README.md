@@ -61,3 +61,6 @@ netfilter-persistent save
 apt update && apt upgrade -y
 ```
 
+
+
+
