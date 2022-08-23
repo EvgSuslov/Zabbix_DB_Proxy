@@ -10,7 +10,7 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
 Ok. Firs of all you need to run 3 VMs. 
   1st main Zabbix with Zabbix server and Zabbix Agent  
     We will be use Ubuntu server 18.04 
-    Run after installation process finished:  
+    Run in cli after installation process finished:  
 ```bash
 apt update && apt upgrade -y
 ``` 
@@ -46,3 +46,14 @@ port 80 - http and  web requests
 port 443  - for https requests  
 port 10050 for GET requests from internal and external zabbix agents  
 [for more additional info about default ports check me](https://docs.oracle.com/en/storage/tape-storage/sl4000/slklg/default-port-numbers.html "oracle default ports")  
+
+Foe settings saving run:  
+```bash 
+apt install iptables-persistent
+```
+```bash
+netfilter-persistent save
+```
+```bash
+apt update && apt upgrade -y
+```
