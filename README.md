@@ -27,5 +27,16 @@ systemctl enable chrony
 systemctl start chrony 
 ```
 
-  
- 
+for fire wall settings run in cli:
+
+```bash
+iptables -I INPUT -p tcp --match multiport --dports 80,443 -j ACCEPT
+```
+```bash
+iptables -I INPUT -p tcp --match multiport --dports 10050,10051 -j ACCEPT
+```
+where:
+port 80 - http and  web requests;
+port 443  - for https requests;
+port 10050 for GET requests from internal and external zabbix agents;
+[for more additional info about default ports check me](https://docs.oracle.com/en/storage/tape-storage/sl4000/slklg/default-port-numbers.html)
