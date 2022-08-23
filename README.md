@@ -17,7 +17,8 @@ Ok. Firs of all you need to run 3 VMs.
   ```
   [for your time zone check me out](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "for your time zone check me out")
   
-```bash apt install chrony -y
+```bash 
+apt install chrony -y
 ```
 ```bash 
 systemctl enable chrony 
