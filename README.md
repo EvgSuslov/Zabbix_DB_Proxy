@@ -4,7 +4,7 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-Ubuntu%2018.04%20LTS-orange) ![Zabbix](https://img.shields.io/badge/Zabbix-Zabbix--6.x-red)  
 
 ## Practice
-#### Install Zabbix server, frontend, agent
+
 1.Get ready 3 VMs running Ububntu Linux  
 2. Get install on 1st VM Zabbix server with nginx + Agent2  
 3. Get install on 2nd VM external DataBase(postgresql + timescaledb extention) + Agent2  
@@ -84,5 +84,8 @@ apt update
 ```bash
 apt install zabbix-server-pgsql zabbix-frontend-php php7.2-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
 ```
-and now I need to figure out how to make external database
-
+#### Apache2 remove
+if you see somting like this
+```bash ... NOTICE: You are seeing this message because you have apache2 package installed
+....
+```
