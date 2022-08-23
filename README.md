@@ -67,7 +67,9 @@ netfilter-persistent save
 apt update && apt upgrade -y
 ```
 
-To install zabbix server you need[to go here](https://www.zabbix.com/download?zabbix=6.0&os_distribution=ubuntu&os_version=18.04_bionic&db=postgresql&ws=nginx)
+To install zabbix server you need [to go here](https://www.zabbix.com/download?zabbix=6.0&os_distribution=ubuntu&os_version=18.04_bionic&db=postgresql&ws=nginx "offical guide to install zabbix")
+
+#### Install Zabbix repository
 
 ```bash
 wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3+ubuntu18.04_all.deb
@@ -78,4 +80,9 @@ dpkg -i zabbix-release_6.0-3+ubuntu18.04_all.deb
 ```bash
 apt update
 ```
+#### nstall Zabbix server, frontend, agent
+```bash
+apt install zabbix-server-pgsql zabbix-frontend-php php7.2-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
+```
+and now I need to figure out how to make external database
 
