@@ -204,9 +204,9 @@ cp thin in
 <?php phpinfo(); ?>
 ```
 
-in brouser type http://<server IP-addres>/  
+in brouser type http:// server IP-addres /  
 and we see default php page  
-###### for default zabbix server insallation
+###### For default zabbix server insallation
 
 ```bash
 cat /etc/os-release | grep VERSION_ID
