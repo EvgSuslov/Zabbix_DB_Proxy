@@ -163,4 +163,12 @@ apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysq
 ```   
 ## 2 Database
 
+```bash 
+apt install postgresql-14 postgresql-client-14
+```
+
+add it 
+```bash
+host zabbix zabbix 0.0.0.0/0 scram-sha-256
+```
 
