@@ -161,6 +161,6 @@ installing all server stuff
 ```bash
 apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysql
 ```   
-##2 Database
+## 2 Database
 
 
