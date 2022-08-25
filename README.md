@@ -142,5 +142,25 @@ open php.ini for settings
 nano /etc/php/7.***/fpm/php.ini  
 ```  
 whrere /7.*** / is your php version
+```bash
+cat /etc/os-release | grep VERSION_ID
+```  
+find your relise on https://repo.zabbix.com/
+
+```bash
+wget https://repo.zabbix.com/zabbix/6.1/ubuntu/pool/main/z/zabbix-release/***
+```  
+where *** your VERSION_ID  
+```bash
+dpkg -i zabbix-release_*.deb
+```
+```bash
+apt update
+```
+installing all server stuff
+```bash
+apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysql
+```   
+##2 Database
 
 
