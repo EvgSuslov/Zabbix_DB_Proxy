@@ -163,22 +163,23 @@ systemctl restart php7.***-fpm
 nano /etc/nginx/sites-enabled/default
 ```
 in location we add  
-        ```bash
-        index  index.php;
-        ```
- in server section we add
- ```bash
- location ~ \.php$ {
-                set $root_path /var/www/html;
-                fastcgi_buffer_size 32k;
-                fastcgi_buffers 4 32k;
-                fastcgi_pass unix:/run/php/php7.***-fpm.sock;
-                fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $root_path$fastcgi_script_name;
-                include fastcgi_params;
-                fastcgi_param DOCUMENT_ROOT $root_path;
-        }
-   ```
+
+```bash
+index  index.php;
+```
+in server section we add
+```bash
+location ~ \.php$ {
+              set $root_path /var/www/html;
+              fastcgi_buffer_size 32k;
+              fastcgi_buffers 4 32k;
+              fastcgi_pass unix:/run/php/php7.***-fpm.sock;
+              fastcgi_index index.php;
+              fastcgi_param SCRIPT_FILENAME $root_path$fastcgi_script_name;
+              include fastcgi_params;
+              fastcgi_param DOCUMENT_ROOT $root_path;
+      }
+ ```
    
 whrere /7.*** / is your php version
 
