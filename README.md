@@ -140,8 +140,73 @@ open php.ini for settings
 
 ```bash
 nano /etc/php/7.***/fpm/php.ini  
-```  
+```
+whrere /7.*** / is your php version  
+
+date.timezone = "your_time_zone"
+...
+max_execution_time = 300
+...
+post_max_size = 16M
+...
+max_input_time = 300
+...
+max_input_vars = 10000  
+```bash
+systemctl enable php7.***-fpm
+```
+```bash
+systemctl restart php7.***-fpm
+```
+
+```bash
+nano /etc/nginx/sites-enabled/default
+```
+in location we add  
+        ```bash
+        index  index.php;
+        ```
+ in server section we add
+ ```bash
+ location ~ \.php$ {
+                set $root_path /var/www/html;
+                fastcgi_buffer_size 32k;
+                fastcgi_buffers 4 32k;
+                fastcgi_pass unix:/run/php/php7.***-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $root_path$fastcgi_script_name;
+                include fastcgi_params;
+                fastcgi_param DOCUMENT_ROOT $root_path;
+        }
+   ```
+   
 whrere /7.*** / is your php version
+
+checkout nginx settings 
+```bash
+nginx -t
+```
+and restart nginx
+
+```bash
+systemctl restart nginx
+```
+
+create index.php
+
+```bash
+nano /var/www/html/index.php
+```
+cp thin in
+
+```php
+<?php phpinfo(); ?>
+```
+
+in brouser type http://<server IP-addres>/  
+and we see default php page  
+###### for default zabbix server insallation
+
 ```bash
 cat /etc/os-release | grep VERSION_ID
 ```  
@@ -161,6 +226,8 @@ installing all server stuff
 ```bash
 apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysql
 ```   
+
+
 ## 2 Database
 
 ```bash 
