@@ -131,3 +131,16 @@ systemctl status nginx
 ```
  
 if you still visual apache2 default page, just go for index.html in my repo. replace index.html with default nginx file in /var/lib/html/ index.html
+
+Zabbix interface working om PHP.ini, so we need our PHP to install for zabbix tunning
+```bash
+apt install php php-fpm php-mysql php-pear php-cgi php-common php-ldap php-mbstring php-snmp php-gd php-xml php-bcmath
+```
+open php.ini for settings  
+
+```bash
+nano /etc/php/7.***/fpm/php.ini  
+```  
+whrere /7.*** / is your php version
+
+
