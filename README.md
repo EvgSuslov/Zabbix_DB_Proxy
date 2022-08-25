@@ -230,10 +230,18 @@ apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysq
 
 
 ## 2 Database
+```bash
+sudo apt update && sudo apt upgrade
+```
 
 ```bash 
 apt install postgresql-14 postgresql-client-14
 ```
+
+
+
+
+
 
 add it 
 ```bash
