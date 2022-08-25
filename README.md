@@ -230,17 +230,52 @@ apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysq
 
 
 ## 2 Database
-```bash
+
+#### Step 1: Check requirements and update system
+You will need the following:
+
+Ubuntu 20.04|18.04 installed on your machine.
+A user with sudo privileges.
+```bash 
 sudo apt update && sudo apt upgrade
 ```
+install if nessary:
+```bash
+sudo apt -y install gnupg2 wget vim
+```
+check out you psql version, you will need the latest one(14+)
+```bash
+sudo apt-cache search postgresql | grep postgresql
+```
+For this guide, we are interested in the latest release version PostgreSQL 14 which is not provided by the default repositories and thus we will consider adding another repository.  
 
-```bash 
-apt install postgresql-14 postgresql-client-14
+```bash
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+```
+```bash
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+```bash
+sudo apt -y update
+```
+Now that we have added the repository to our system, proceed and install PostgreSQL 14 using the command below.  
+```bash
+sudo apt -y install postgresql-14
 ```
 
-
-
-
+```bash
+root:# systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+   Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor prese
+   Active: active (exited) 
+ Main PID: 31925 (code=exited, status=0/SUCCESS)
+    Tasks: 0 (limit: 4656)
+   CGroup: /system.slice/postgresql.service
+ ```
+Verify the installed PostgreSQL version.  
+```bash
+sudo -u postgres psql -c "SELECT version();"
+```
 
 
 add it 
