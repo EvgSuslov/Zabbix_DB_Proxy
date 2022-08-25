@@ -276,7 +276,17 @@ Verify the installed PostgreSQL version.
 ```bash
 sudo -u postgres psql -c "SELECT version();"
 ```
+```psql
+You are now connected to database "zabbix" as user "postgres".
+zabbix=# CREATE EXTENSION IF NOT EXISTS timescaledb;
+FATAL:  extension "timescaledb" must be preloaded
+HINT:  Please preload the timescaledb library via shared_preload_libraries.
 
+This can be done by editing the config file at: /etc/postgresql/14/main/postgresql.conf
+and adding 'timescaledb' to the list in the shared_preload_libraries config.
+        # Modify postgresql.conf:
+        shared_preload_libraries = 'timescaledb
+ ```
 
 add it 
 ```bash
