@@ -230,7 +230,7 @@ apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysq
 
 
 ## 2 Database
-
+### you must stop zabbix server service before anything you do with DB
 #### Step 1: Check requirements and update system
 You will need the following:
 
@@ -276,6 +276,15 @@ Verify the installed PostgreSQL version.
 ```bash
 sudo -u postgres psql -c "SELECT version();"
 ```
+
+install time scale db
+
+whatch closely for postgresql.conf  
+yo must add in your postgresql.conf  
+also add your main zabbix server ip insted of local host  
+```bash
+shared_preload_libraries = 'timescaledb
+```
 ```psql
 You are now connected to database "zabbix" as user "postgres".
 zabbix=# CREATE EXTENSION IF NOT EXISTS timescaledb;
@@ -288,7 +297,7 @@ and adding 'timescaledb' to the list in the shared_preload_libraries config.
         shared_preload_libraries = 'timescaledb
  ```
 
-add it 
+add it in pg_hba.conf
 ```bash
 host zabbix zabbix 0.0.0.0/0 scram-sha-256
 ```
