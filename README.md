@@ -344,4 +344,4 @@ sudo vi /etc/zabbix/zabbix_server.conf
 Add this
 ```bash
 DBPassword=password
-bash
+```
