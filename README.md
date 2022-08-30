@@ -301,4 +301,47 @@ add it in pg_hba.conf
 ```bash
 host zabbix zabbix 0.0.0.0/0 scram-sha-256
 ```
+# 4. Install Postgresql database
+## To install Postgresql check out this article How to install PostgreSQL 14 on Ubuntu 20.04|21.10
 
+###Create a file repository for Postgresql
+```bash
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+```
+Next is to import GPG key
+```bash
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+After this, we need to update our system again.
+```bash 
+apt update
+```
+And lastly install Postgresql 14 with the following command;
+```bash
+sudo apt install postgresql-14 -y
+```
+Once installed login into Postgresql shell;
+```bash
+sudo -i -u postgres
+```
+We now need to create a database user with permissions like this:
+```bash
+sudo -u postgres createuser --pwprompt zabbix
+```
+Setup the database Zabbix with previously created user.
+```bash
+sudo -u postgres createdb -O zabbix -E Unicode -T template0 zabbix
+```
+After this we now need to import initial schema and data. Enter your initial created password when prompted.
+```bash
+zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+```
+# 5. Configure database for Zabbix server
+Open your preferred text editor and edit the following /etc/zabbix/zabbix_server.conf. I am using vim as text editor.
+```bash
+sudo vi /etc/zabbix/zabbix_server.conf
+```
+Add this
+```bash
+DBPassword=password
+bash
