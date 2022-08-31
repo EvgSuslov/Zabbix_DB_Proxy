@@ -139,24 +139,25 @@ apt install php php-fpm php-mysql php-pear php-cgi php-common php-ldap php-mbstr
 open php.ini for settings  
 
 ```bash
-nano /etc/php/7.***/fpm/php.ini  
+nano /etc/php/7.*/fpm/php.ini  
 ```
-whrere /7.*** / is your php version  
+whrere /7.* / is your php version  
 
-date.timezone = "your_time_zone"
-...
-max_execution_time = 300
-...
-post_max_size = 16M
-...
-max_input_time = 300
-...
+date.timezone = "your_time_zone"  
+
+max_execution_time = 300  
+
+post_max_size = 16M  
+
+max_input_time = 300  
+
 max_input_vars = 10000  
+
 ```bash
-systemctl enable php7.***-fpm
+systemctl enable php7.*-fpm
 ```
 ```bash
-systemctl restart php7.***-fpm
+systemctl restart php7.*-fpm
 ```
 
 ```bash
@@ -225,83 +226,9 @@ apt update
 ```
 installing all server stuff
 ```bash
-apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-mysql
+apt install zabbix-frontend-php zabbix-get zabbix-sql-scripts zabbix-server-pgsql
 ```   
-
-
-## 2 Database
-### you must stop zabbix server service before anything you do with DB
-#### Step 1: Check requirements and update system
-You will need the following:
-
-Ubuntu 20.04|18.04 installed on your machine.
-A user with sudo privileges.
-```bash 
-sudo apt update && sudo apt upgrade
-```
-install if nessary:
-```bash
-sudo apt -y install gnupg2 wget vim
-```
-check out you psql version, you will need the latest one(14+)
-```bash
-sudo apt-cache search postgresql | grep postgresql
-```
-For this guide, we are interested in the latest release version PostgreSQL 14 which is not provided by the default repositories and thus we will consider adding another repository.  
-
-```bash
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-```
-```bash
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-```
-```bash
-sudo apt -y update
-```
-Now that we have added the repository to our system, proceed and install PostgreSQL 14 using the command below.  
-```bash
-sudo apt -y install postgresql-14
-```
-
-```bash
-root:# systemctl status postgresql
-● postgresql.service - PostgreSQL RDBMS
-   Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor prese
-   Active: active (exited) 
- Main PID: 31925 (code=exited, status=0/SUCCESS)
-    Tasks: 0 (limit: 4656)
-   CGroup: /system.slice/postgresql.service
- ```
-Verify the installed PostgreSQL version.  
-```bash
-sudo -u postgres psql -c "SELECT version();"
-```
-
-install time scale db
-
-whatch closely for postgresql.conf  
-yo must add in your postgresql.conf  
-also add your main zabbix server ip insted of local host  
-```bash
-shared_preload_libraries = 'timescaledb
-```
-```psql
-You are now connected to database "zabbix" as user "postgres".
-zabbix=# CREATE EXTENSION IF NOT EXISTS timescaledb;
-FATAL:  extension "timescaledb" must be preloaded
-HINT:  Please preload the timescaledb library via shared_preload_libraries.
-
-This can be done by editing the config file at: /etc/postgresql/14/main/postgresql.conf
-and adding 'timescaledb' to the list in the shared_preload_libraries config.
-        # Modify postgresql.conf:
-        shared_preload_libraries = 'timescaledb
- ```
-
-add it in pg_hba.conf
-```bash
-host zabbix zabbix 0.0.0.0/0 scram-sha-256
-```
-# 4. Install Postgresql database
+# 2. Install Postgresql database
 ## To install Postgresql check out this article How to install PostgreSQL 14 on Ubuntu 20.04|21.10
 
 ###Create a file repository for Postgresql
@@ -341,7 +268,169 @@ Open your preferred text editor and edit the following /etc/zabbix/zabbix_server
 ```bash
 sudo vi /etc/zabbix/zabbix_server.conf
 ```
-Add this
+retype this
+```bash
+DBPassword=your_password
+```
+install time scale db
+```bash
+apt install gnupg postgresql-common apt-transport-https lsb-release wget
+```
+```bash
+/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+```
+```bash
+echo "deb https://packagecloud.io/timescale/timescaledb/ubuntu/ $(lsb_release -c -s) main" > /etc/apt/sources.list.d/timescaledb.list
+```
+```bash
+wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | apt-key add -
+```
+```bash
+apt update
+```
+```bash
+apt install timescaledb-2-postgresql-14
+```
+
+whach closely for postgresql.conf
+
+yo must add in your postgresql.conf  
+also add your main zabbix server ip or '*' insted of local host  
+```bash
+shared_preload_libraries = 'timescaledb'
+```
+```psql
+You are now connected to database "zabbix" as user "postgres".
+zabbix=# CREATE EXTENSION IF NOT EXISTS timescaledb;
+FATAL:  extension "timescaledb" must be preloaded
+HINT:  Please preload the timescaledb library via shared_preload_libraries.
+
+This can be done by editing the config file at: /etc/postgresql/14/main/postgresql.conf
+and adding 'timescaledb' to the list in the shared_preload_libraries config.
+        # Modify postgresql.conf:
+        shared_preload_libraries = 'timescaledb
+ ```
+
+add it in pg_hba.conf
+```bash
+host zabbix zabbix 0.0.0.0/0 scram-sha-256
+# 3. zabbix proxy
+zabbix repo install
+```bash
+wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-1%2Bubuntu22.04_all.deb
+```
+```bash
+dpkg -i zabbix-release_6.2-1+ubuntu22.04_all.deb
+```
+```bash
+apt update
+```
+zabbix install
+```bash
+ apt install zabbix-proxy-mysql zabbix-sql-scripts
+ ```
+ create DB
+ ```mysql
+ # mysql -uroot -p
+password
+mysql> create database zabbix_proxy character set utf8mb4 collate utf8mb4_bin;
+mysql> create user zabbix@localhost identified by 'password';
+mysql> grant all privileges on zabbix_proxy.* to zabbix@localhost;
+mysql> set global log_bin_trust_function_creators = 1;
+mysql> quit;
+```
+zab_zaql_prox
+```bash
+cat /usr/share/doc/zabbix-sql-scripts/mysql/proxy.sql | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix_proxy
+```
+```mysql
+# mysql -uroot -p
+password
+mysql> set global log_bin_trust_function_creators = 0;
+mysql> quit;
+```
+DB settings
+```bash
+nano /etc/zabbix/zabbix_proxy.conf
+```
 ```bash
 DBPassword=password
 ```
+start
+```bash
+# systemctl restart zabbix-proxy
+# systemctl enable zabbix-proxy
+```
+# 3 last step Agent2
+## Zabbix Agent2
+lets install zabbix agent for servers. Than we will configure PSK encryption.
+
+agent 2 isntalling and configure
+previosly we alreadey installed zabbix repo so:
+```bash
+apt install zabbix-agent2
+```
+open conf:
+```bash
+nano /etc/zabbix/zabbix_agent2.conf
+```
+type 127.0.0.1 for local zabbix server agent and your main zabbix server IP addres 
+```bash
+Server=127.0.0.1
+```
+```bash
+systemctl enable zabbix-agent2
+```
+```bash
+systemctl restart zabbix-agent2
+```
+lets switsh for web vercion. go to "settings - hosts" we will see 1 configured server 'zabbix server'
+
+in host section we will see our main server
+
+on the right you will see green ZBX button - it ok, if not google how to fix:
+
+Zabbix agent - status ok
+
+agent is working and configured.
+
+### PSK encryption on Agents
+Чтобы обезопасить передачу данных между сервером и агентом, настроим шифрование по PSK ключу.
+
+На агенте открываем конфигурационный файл:
+```bash
+nano /etc/zabbix/zabbix_agentd.conf
+```
+ctrl+w for ez search
+```
+TLSConnect=psk
+...
+TLSAccept=psk
+...
+TLSPSKIdentity=PSK 001
+...
+TLSPSKFile=/etc/zabbix/agent_key.psk
+```
+open key gen:
+```bash
+openssl rand -hex 32 > /etc/zabbix/agent_key.psk
+```
+check and save whats inside:
+```bash
+cat /etc/zabbix/agent_key.psk
+```
+
+restart agent:
+```bash
+systemctl restart zabbix-agent
+```
+enter in web zabbix settings. hosts list:
+
+click on our server or host with agent2 installed on
+
+go to Encryption. find PSK button, click it, enter yor id TLSPSKIdentity, cp your key
+
+click refresh
+
+boom. encrypted. 
+repeat for all agents.
