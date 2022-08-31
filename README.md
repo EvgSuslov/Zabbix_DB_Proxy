@@ -325,11 +325,47 @@ dpkg -i zabbix-release_6.2-1+ubuntu22.04_all.deb
 ```bash
 apt update
 ```
-zabbix install
+#### zabbix install
 ```bash
  apt install zabbix-proxy-mysql zabbix-sql-scripts
  ```
- create DB
+#### install DB
+ ```bash
+sudo apt-get update
+```
+```bash
+sudo apt-get install mysql-server
+```
+follow steps by Y or N in the following command:
+```bash
+sudo mysql_secure_installation
+```
+check database status
+```bash
+systemctl status mysql.service
+```
+```bash
+sudo systemctl mysql start
+```
+thing
+```bash
+mysqladmin -p -u root version
+```
+it will return
+```bash
+mysqladmin  Ver 8.42 Distrib 5.7.16, for Linux on x86_64
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Server version      5.7.16-0ubuntu0.16.04.1
+Protocol version    10
+Connection      Localhost via UNIX socket
+UNIX socket     /var/run/mysqld/mysqld.sock
+Uptime:         30 min 54 sec
+Threads: 1  Questions: 12  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.006
+```
+#### create DB
  ```mysql
  # mysql -uroot -p
 password
@@ -339,7 +375,7 @@ mysql> grant all privileges on zabbix_proxy.* to zabbix@localhost;
 mysql> set global log_bin_trust_function_creators = 1;
 mysql> quit;
 ```
-zab_zaql_prox
+#### zab_zaql_prox
 ```bash
 cat /usr/share/doc/zabbix-sql-scripts/mysql/proxy.sql | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix_proxy
 ```
