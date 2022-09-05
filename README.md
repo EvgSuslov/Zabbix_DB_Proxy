@@ -470,3 +470,8 @@ click refresh
 
 boom. encrypted. 
 repeat for all agents.
+
+
+# Zabbix Proxy
+## zabbix proxy + maria db + zabbix agent  
+
