@@ -5,6 +5,7 @@ instalation process for Zabbix Server + Zabbix Proxy + exteranal database for Za
 
 ## Practice
 
+
 1.Get ready 3 VMs running Ububntu Linux  
 2. Get install on 1st VM Zabbix server with nginx + Agent2  
 3. Get install on 2nd VM external DataBase(postgresql + timescaledb extention) + Agent2  
