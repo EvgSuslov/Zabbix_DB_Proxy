@@ -328,6 +328,25 @@ and adding 'timescaledb' to the list in the shared_preload_libraries config.
 add it in pg_hba.conf
 ```bash
 host zabbix zabbix 0.0.0.0/0 scram-sha-256
+```bash
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+
+# - Connection Settings -
+
+listen_addresses = '*'          # what IP address(es) to listen on;
+                                        # comma-separated list of addresses;
+                                        # defaults to 'localhost'; use '*' for all
+                                        # (change requires restart)
+port = 5432                             # (change requires restart)
+max_connections = 100                   # (change requires restart)
+#superuser_reserved_connections = 3     # (change requires restart)
+unix_socket_directories = '/var/run/postgresql' # comma-separated list of directories
+                                        # (change requires restart)
+#unix_socket_group = ''                 # (change requires restart)
+#unix_socket_permissions = 0777         # begin with 0 to use octal notation
+```
 # 3. zabbix proxy
 zabbix repo install
 ```bash
