@@ -328,6 +328,9 @@ and adding 'timescaledb' to the list in the shared_preload_libraries config.
 add it in pg_hba.conf
 ```bash
 host zabbix zabbix 0.0.0.0/0 scram-sha-256
+```
+fix  - listen_addresses in  
+/etc/postgresql/14/main/postgresql.conf
 ```bash
 #------------------------------------------------------------------------------
 # CONNECTIONS AND AUTHENTICATION
