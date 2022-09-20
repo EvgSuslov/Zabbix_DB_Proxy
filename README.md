@@ -260,6 +260,19 @@ Setup the database Zabbix with previously created user.
 ```bash
 sudo -u postgres createdb -O zabbix -E Unicode -T template0 zabbix
 ```
+```bash
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3+ubuntu18.04_all.deb
+```
+```bash
+dpkg -i zabbix-release_6.0-3+ubuntu18.04_all.deb
+```
+```bash
+apt update
+```
+#### Install Zabbix server, frontend, agent
+```bash
+apt install zabbix-sql-scripts zabbix-agent
+```
 After this we now need to import initial schema and data. Enter your initial created password when prompted.
 ```bash
 zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
